@@ -2,6 +2,8 @@ import { Media } from './collections/Media'
 import { Users } from './collections/Users'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { en } from '@payloadcms/translations/languages/en'
+import { es } from '@payloadcms/translations/languages/es'
 import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -30,4 +32,8 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
+  i18n: {
+    supportedLanguages: { en, es },
+    fallbackLanguage: 'es',
+  },
 })
