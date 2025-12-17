@@ -1,6 +1,6 @@
 import '@/globals.css'
 
-export { metadata } from '@/lib/metadata'
+export { metadata } from '@/content/metadata'
 
 type Props = { children: React.ReactNode }
 
