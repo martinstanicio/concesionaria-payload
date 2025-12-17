@@ -1,5 +1,6 @@
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
+import lexicalConfig from './lexical.config'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { en } from '@payloadcms/translations/languages/en'
@@ -20,7 +21,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  editor: lexicalEditor(),
+  editor: lexicalEditor(lexicalConfig),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
