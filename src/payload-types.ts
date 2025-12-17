@@ -187,7 +187,7 @@ export interface Vehicle {
   title: string;
   brand: string;
   model: string;
-  trim: string;
+  trim?: string | null;
   year: number;
   kilometers: number;
   description: {

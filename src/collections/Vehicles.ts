@@ -31,7 +31,16 @@ export const Vehicles: CollectionConfig = {
       required: true,
       admin: { hidden: true },
       hooks: {
-        beforeChange: [({ data }) => `${data?.year} ${data?.brand} ${data?.model} ${data?.trim}`],
+        beforeChange: [
+          ({ data }) => {
+            const year = data?.year
+            const brand = data?.brand
+            const model = data?.model
+            const trim = data?.trim
+
+            return [year, brand, model, trim].filter(Boolean).join(' ')
+          },
+        ],
       },
     },
     {
@@ -50,7 +59,7 @@ export const Vehicles: CollectionConfig = {
       label: { en: 'Trim', es: 'Variante' },
       name: 'trim',
       type: 'text',
-      required: true,
+      required: false,
     },
     {
       label: { en: 'Year', es: 'Año' },
