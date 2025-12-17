@@ -16,7 +16,7 @@ import {
   InlineToolbarFeature,
   FixedToolbarFeature,
   UnorderedListFeature,
-} from "@payloadcms/richtext-lexical";
+} from '@payloadcms/richtext-lexical'
 
 const lexicalConfig: LexicalEditorProps = {
   features: [
@@ -38,6 +38,6 @@ const lexicalConfig: LexicalEditorProps = {
     InlineToolbarFeature(),
     FixedToolbarFeature(),
   ],
-};
+}
 
-export default lexicalConfig;
+export default lexicalConfig
