@@ -9,7 +9,7 @@ export const Vehicles: CollectionConfig = {
     plural: { en: 'Vehicles', es: 'Vehículos' },
   },
   admin: {
-    defaultColumns: ['images', 'title', 'price'],
+    defaultColumns: ['images', 'title', 'price', 'currency'],
     description: {
       en: 'This collection contains the vehicles available in the dealer.',
       es: 'Esta colección contiene los vehículos disponibles en la concesionaria.',
