@@ -33,26 +33,24 @@ export default function VehicleCard({ vehicle, className, ...props }: Props) {
         height={images[0].height}
         className="bg-secondary aspect-4/3 object-cover object-center"
       />
-      <CardContent className="flex h-full flex-col justify-between p-4">
-        <div>
-          <CardTitle className="mb-2 flex items-start justify-between gap-1">
-            <h2>
-              <Link
-                href={`/vehiculos/${id}`}
-                className="before:absolute before:inset-0 hover:underline focus:underline"
-              >
-                {brand} {model} {trim}
-              </Link>
-            </h2>
-            <span>{currencyFormatter[currency].format(price)}</span>
-          </CardTitle>
-          <CardDescription>
-            <div className="after:to-background relative mt-3 flex gap-1 overflow-x-hidden after:absolute after:right-0 after:h-full after:w-4 after:bg-linear-to-r after:from-transparent">
-              <Badge>{year}</Badge>
-              <Badge>{kilometers.toLocaleString('es-AR')} km</Badge>
-            </div>
-          </CardDescription>
-        </div>
+      <CardContent className="flex h-full flex-col justify-between gap-2 p-4">
+        <CardTitle className="mb-2 flex items-start justify-between gap-1">
+          <h2>
+            <Link
+              href={`/vehiculos/${id}`}
+              className="before:absolute before:inset-0 hover:underline focus:underline"
+            >
+              {brand} {model} {trim}
+            </Link>
+          </h2>
+          <span>{currencyFormatter[currency].format(price)}</span>
+        </CardTitle>
+        <CardDescription>
+          <div className="flex flex-wrap gap-2">
+            <Badge>{year}</Badge>
+            <Badge>{kilometers.toLocaleString('es-AR')} km</Badge>
+          </div>
+        </CardDescription>
       </CardContent>
     </Card>
   )
