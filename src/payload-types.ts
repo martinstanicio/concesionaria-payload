@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     vehicles: Vehicle;
+    'frequently-asked-questions': FrequentlyAskedQuestions;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     vehicles: VehiclesSelect<false> | VehiclesSelect<true>;
+    'frequently-asked-questions': FrequentlyAskedQuestionsSelect<false> | FrequentlyAskedQuestionsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -212,6 +214,33 @@ export interface Vehicle {
   createdAt: string;
 }
 /**
+ * This collection contains the frequently asked questions for the FAQs section.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "frequently-asked-questions".
+ */
+export interface FrequentlyAskedQuestions {
+  id: number;
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -246,6 +275,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'vehicles';
         value: number | Vehicle;
+      } | null)
+    | ({
+        relationTo: 'frequently-asked-questions';
+        value: number | FrequentlyAskedQuestions;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -347,6 +380,16 @@ export interface VehiclesSelect<T extends boolean = true> {
   price?: T;
   currency?: T;
   images?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "frequently-asked-questions_select".
+ */
+export interface FrequentlyAskedQuestionsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
   updatedAt?: T;
   createdAt?: T;
 }

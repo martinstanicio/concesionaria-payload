@@ -1,3 +1,4 @@
+import { FrequentlyAskedQuestions } from './collections/FrequentlyAskedQuestions'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
 import { Vehicles } from './collections/Vehicles'
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Vehicles],
+  collections: [Users, Media, Vehicles, FrequentlyAskedQuestions],
   editor: lexicalEditor(lexicalConfig),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
