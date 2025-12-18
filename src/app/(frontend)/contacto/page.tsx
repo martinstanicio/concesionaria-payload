@@ -35,7 +35,12 @@ export default function ContactPage() {
       href: googleMapsUrl,
     },
     {
-      icon: <SimpleIcon icon={siWhatsapp} className="text-muted-foreground mt-1 size-5" />,
+      icon: (
+        <SimpleIcon
+          icon={siWhatsapp}
+          className="text-muted-foreground dark:text-muted-foreground mt-1 size-5"
+        />
+      ),
       title: 'Escribinos por WhatsApp',
       description: `${formattedPhone} (WhatsApp)`,
       href: getWhatsAppUrl(phone).toString(),
