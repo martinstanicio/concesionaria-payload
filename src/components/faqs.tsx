@@ -7,7 +7,6 @@ import { getPayload } from 'payload'
 
 export default async function FAQs(props: React.ComponentProps<'section'>) {
   const payload = await getPayload({ config })
-
   const faqs = await payload.find({
     collection: 'frequently-asked-questions',
     depth: 1,

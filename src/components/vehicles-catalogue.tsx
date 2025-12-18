@@ -4,6 +4,7 @@ import SortingBar from './sorting-bar'
 import VehiclesGrid from './vehicles-grid'
 import config from '@/payload.config'
 import { getPayload } from 'payload'
+import { Suspense } from 'react'
 
 type Props = {
   page: number
@@ -14,7 +15,6 @@ type Props = {
 
 export default async function VehiclesCatalogue({ page, sort, search, limit = 12 }: Props) {
   const payload = await getPayload({ config })
-
   const vehicles = await payload.find({
     collection: 'vehicles',
     depth: 1,
@@ -29,9 +29,13 @@ export default async function VehiclesCatalogue({ page, sort, search, limit = 12
   return (
     <>
       <div className="flex flex-col gap-4 md:flex-row">
-        <SearchBar className="flex-1" />
+        <Suspense>
+          <SearchBar className="flex-1" />
+        </Suspense>
         <div className="w-full md:max-w-xs">
-          <SortingBar />
+          <Suspense>
+            <SortingBar />
+          </Suspense>
         </div>
       </div>
 
