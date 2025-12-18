@@ -20,7 +20,7 @@ export default async function FeaturedVehicles(props: Props) {
   return (
     <section {...props}>
       <div className="container mx-auto space-y-12 px-4 py-24">
-        <div className="space-y-2 sm:text-center">
+        <div className="space-y-2 text-center">
           <h2 className="text-3xl font-bold">Vehículos destacados</h2>
           <p className="text-muted-foreground">
             Nuestra selección de vehículos destacados, elegidos por su calidad y popularidad.
