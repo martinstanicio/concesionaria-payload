@@ -5,6 +5,7 @@ import { Vehicles } from './collections/Vehicles'
 import lexicalConfig from './lexical.config'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { en } from '@payloadcms/translations/languages/en'
 import { es } from '@payloadcms/translations/languages/es'
 import path from 'path'
@@ -34,7 +35,12 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    uploadthingStorage({
+      collections: { media: true },
+      options: { token: process.env.UPLOADTHING_TOKEN || '' },
+    }),
+  ],
   i18n: {
     supportedLanguages: { en, es },
     fallbackLanguage: 'es',

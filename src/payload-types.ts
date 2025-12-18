@@ -166,6 +166,7 @@ export interface Media {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -353,6 +354,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   vehicles?: T;
+  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
