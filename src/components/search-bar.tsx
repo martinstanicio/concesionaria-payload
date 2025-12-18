@@ -36,11 +36,11 @@ export default function SearchBar({ className, ...props }: Props) {
 
   return (
     <div className={cn('relative', className)} {...props}>
-      <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform appearance-none" />
+      <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
       <Input
         type="search"
         placeholder="Buscar vehículos..."
-        className="pl-10"
+        className="appearance-none pl-10"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
