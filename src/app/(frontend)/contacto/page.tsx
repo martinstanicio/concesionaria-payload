@@ -1,7 +1,16 @@
 import SimpleIcon from '@/components/simple-icon'
 import SocialIcons from '@/components/social-icons'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  address,
+  email,
+  formattedPhone,
+  googleMapsEmbedUrl,
+  googleMapsUrl,
+  phone,
+} from '@/content/contact-info'
 import { siteName } from '@/content/metadata'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { Metadata } from 'next'
 import { siWhatsapp } from 'simple-icons'
@@ -22,30 +31,29 @@ export default function ContactPage() {
     {
       icon: <MapPin className="text-muted-foreground mt-1 size-5" />,
       title: 'Nuestra dirección',
-      description: 'San Martín 150, Belén de Escobar, Buenos Aires',
-      href: 'https://maps.google.com',
+      description: address,
+      href: googleMapsUrl,
     },
     {
       icon: <SimpleIcon icon={siWhatsapp} className="text-muted-foreground mt-1 size-5" />,
       title: 'Escribinos por WhatsApp',
-      description: '+54 9 348 412-3456 (WhatsApp)',
-      href: 'https://wa.me/+5493484123456',
+      description: `${formattedPhone} (WhatsApp)`,
+      href: getWhatsAppUrl(phone).toString(),
     },
     {
       icon: <Phone className="text-muted-foreground mt-1 size-5" />,
       title: 'Llamanos',
-      description: '+54 9 348 412-3456',
-      href: 'tel:+5493484123456',
+      description: formattedPhone,
+      href: `tel:${phone}`,
     },
     {
       icon: <Mail className="text-muted-foreground mt-1 size-5" />,
       title: 'Envianos un email',
-      description: 'contacto@concesionaria.com',
-      href: 'mailto:contacto@concesionaria.com',
+      description: email,
+      href: `mailto:${email}`,
     },
   ]
-  const map =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d582.3335412153184!2d-58.794479187274085!3d-34.34599939227283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb61baab870cab%3A0xdd91a53d238613d!2sPlaza%20General%20San%20Mart%C3%ADn!5e0!3m2!1ses-419!2sar!4v1745002624524!5m2!1ses-419!2sar'
+  const map = googleMapsEmbedUrl
 
   return (
     <section className="container mx-auto space-y-6 px-4 py-8 xl:max-w-6xl">

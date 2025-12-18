@@ -1,4 +1,6 @@
-import { siFacebook, siInstagram, SimpleIcon, siX } from 'simple-icons'
+import { facebookUrl, instagramUrl, phone, twitterUrl } from './contact-info'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { siFacebook, siInstagram, SimpleIcon, siWhatsapp, siX } from 'simple-icons'
 
 type SocialItem = {
   title: string
@@ -8,18 +10,23 @@ type SocialItem = {
 
 export const social: SocialItem[] = [
   {
+    title: 'WhatsApp',
+    href: getWhatsAppUrl(phone).toString(),
+    icon: siWhatsapp,
+  },
+  {
     title: 'Instagram',
-    href: 'https://instagram.com',
+    href: instagramUrl,
     icon: siInstagram,
   },
   {
     title: 'Facebook',
-    href: 'https://facebook.com',
+    href: facebookUrl,
     icon: siFacebook,
   },
   {
     title: 'Twitter',
-    href: 'https://twitter.com',
+    href: twitterUrl,
     icon: siX,
   },
 ]

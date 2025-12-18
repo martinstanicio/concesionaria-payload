@@ -1,0 +1,10 @@
+export const phone = '+5493484123456'
+export const formattedPhone = '+54 9 348 412-3456'
+export const email = 'contacto@concesionaria.com'
+export const address = 'San Martín 150, Belén de Escobar, Buenos Aires'
+export const googleMapsUrl = 'https://maps.app.goo.gl/Cm2Z33oD3vTMzyTb7'
+export const googleMapsEmbedUrl =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d582.3335412153184!2d-58.794479187274085!3d-34.34599939227283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb61baab870cab%3A0xdd91a53d238613d!2sPlaza%20General%20San%20Mart%C3%ADn!5e0!3m2!1ses-419!2sar!4v1745002624524!5m2!1ses-419!2sar'
+export const instagramUrl = 'https://www.instagram.com/'
+export const facebookUrl = 'https://www.facebook.com/'
+export const twitterUrl = 'https://x.com/'

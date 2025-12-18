@@ -3,8 +3,10 @@ import SimpleIcon from '@/components/simple-icon'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { googleMapsUrl, phone } from '@/content/contact-info'
 import * as currencyFormatter from '@/lib/currency'
 import { isPopulatedList } from '@/lib/is-populated'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
 import config from '@/payload.config'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { MapPin, Phone } from 'lucide-react'
@@ -47,6 +49,11 @@ export default async function VehiclePage({ params }: Props) {
     throw new Error('Vehicle images must be populated. Try increasing depth.')
   }
 
+  const whatsAppUrl = getWhatsAppUrl(
+    phone,
+    `Hola, estoy interesado en el vehículo: ${brand} ${model} ${trim} (${year}).`,
+  )
+
   return (
     <main className="container mx-auto grid grid-cols-1 gap-8 px-4 py-8 lg:grid-cols-2 lg:gap-12">
       <CarouselOrImage images={images} />
@@ -67,21 +74,21 @@ export default async function VehiclePage({ params }: Props) {
 
           <div className="flex gap-2 @max-lg:flex-col @lg:@max-2xl:flex-wrap">
             <Button variant="default" size="lg" asChild className="grow @lg:@max-2xl:basis-full">
-              <Link href="#" className="space-x-2">
+              <Link href={whatsAppUrl.toString()} className="space-x-2">
                 <SimpleIcon icon={siWhatsapp} className="text-inherit" />
                 <span>Hablar por WhatsApp</span>
               </Link>
             </Button>
 
             <Button variant="secondary" size="lg" asChild className="grow">
-              <Link href="#" className="space-x-2">
+              <Link href={`tel:${phone}`} className="space-x-2">
                 <Phone />
                 <span>Llamar por teléfono</span>
               </Link>
             </Button>
 
             <Button variant="secondary" size="lg" asChild className="grow">
-              <Link href="#" className="space-x-2">
+              <Link href={googleMapsUrl} className="space-x-2">
                 <MapPin />
                 <span>Visitar personalmente</span>
               </Link>
