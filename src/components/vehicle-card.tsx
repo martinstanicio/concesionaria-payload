@@ -35,7 +35,7 @@ export default function VehicleCard({ vehicle, className, ...props }: Props) {
       />
       <CardContent className="flex h-full flex-col justify-between p-4">
         <div>
-          <CardTitle className="mb-2 flex items-start justify-between">
+          <CardTitle className="mb-2 flex items-start justify-between gap-1">
             <h2>
               <Link
                 href={`/vehiculos/${id}`}
