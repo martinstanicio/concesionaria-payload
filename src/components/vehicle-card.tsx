@@ -1,3 +1,4 @@
+import { Badge } from './ui/badge'
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card'
 import * as currencyFormatter from '@/lib/currency'
 import { isPopulatedList } from '@/lib/is-populated'
@@ -46,9 +47,10 @@ export default function VehicleCard({ vehicle, className, ...props }: Props) {
             <span>{currencyFormatter[currency].format(price)}</span>
           </CardTitle>
           <CardDescription>
-            <p className="line-clamp-2">
-              {kilometers} KM ({year})
-            </p>
+            <div className="after:to-background relative mt-3 flex gap-1 overflow-x-hidden after:absolute after:right-0 after:h-full after:w-4 after:bg-linear-to-r after:from-transparent">
+              <Badge>{year}</Badge>
+              <Badge>{kilometers.toLocaleString('es-AR')} km</Badge>
+            </div>
           </CardDescription>
         </div>
       </CardContent>
