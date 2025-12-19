@@ -29,7 +29,12 @@ export default async function FeaturedVehicles(props: Props) {
 
         <div className="flex flex-wrap justify-center gap-8">
           {vehicles.docs.map((vehicle) => (
-            <VehicleCard key={vehicle.id} vehicle={vehicle} className="basis-md" />
+            <VehicleCard
+              key={vehicle.id}
+              vehicle={vehicle}
+              headingLevel="h3"
+              className="basis-md"
+            />
           ))}
         </div>
 

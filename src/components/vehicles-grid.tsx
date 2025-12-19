@@ -18,7 +18,7 @@ export default function VehiclesGrid({ vehicles }: Props) {
   return (
     <main className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {vehicles.map((vehicle) => (
-        <VehicleCard key={vehicle.id} vehicle={vehicle} />
+        <VehicleCard key={vehicle.id} vehicle={vehicle} headingLevel="h2" />
       ))}
     </main>
   )

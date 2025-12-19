@@ -7,9 +7,17 @@ import { Vehicle } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = React.ComponentProps<'div'> & { vehicle: Vehicle }
+type Props = React.ComponentProps<'div'> & {
+  vehicle: Vehicle
+  headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+}
 
-export default function VehicleCard({ vehicle, className, ...props }: Props) {
+export default function VehicleCard({
+  vehicle,
+  headingLevel: Heading,
+  className,
+  ...props
+}: Props) {
   const { id, brand, model, trim, year, kilometers, price, currency, images } = vehicle
 
   if (!isPopulatedList(images)) {
@@ -35,14 +43,14 @@ export default function VehicleCard({ vehicle, className, ...props }: Props) {
       />
       <CardContent className="flex h-full flex-col justify-between gap-2 p-4">
         <CardTitle className="mb-2 flex items-start justify-between gap-1">
-          <h2>
+          <Heading>
             <Link
               href={`/vehiculos/${id}`}
               className="before:absolute before:inset-0 hover:underline focus:underline"
             >
               {brand} {model} {trim}
             </Link>
-          </h2>
+          </Heading>
           <span>{currencyFormatter[currency].format(price)}</span>
         </CardTitle>
         <CardDescription>
