@@ -49,9 +49,10 @@ export default async function VehiclePage({ params }: Props) {
     throw new Error('Vehicle images must be populated. Try increasing depth.')
   }
 
+  const pageUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/vehiculos/${id}`
   const whatsAppUrl = getWhatsAppUrl(
     phone,
-    `Hola, estoy interesado en el vehículo: ${brand} ${model} ${trim} (${year}).`,
+    `Hola, estoy interesado en el vehículo: ${year} ${brand} ${model} ${trim}.\n\n${pageUrl}`,
   )
 
   return (
