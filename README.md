@@ -1,67 +1,65 @@
-# Payload Blank Template
+# concesionaria-payload
 
-This template comes configured with the bare minimum to get started on anything you need.
+A headless CMS built with [Payload](https://payloadcms.com) for managing a car dealership website.
+
+## Features
+
+- User authentication and admin panel for managing content.
+- Media uploads using [UploadThing](https://uploadthing.com/).
+- Full i18n support for English and Spanish in the admin panel.
+- Docker Compose setup for easy local development with PostgreSQL.
+- Plug-and-play testing setup with Vitest and Playwright.
 
 ## Quick start
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+1. Clone the repo.
 
-## Quick Start - local setup
+   ```bash
+   git clone https://github.com/martinstanicio/concesionaria-payload
+   ```
 
-To spin up this template locally, follow these steps:
+2. Go into the project directory and copy the example environment variables.
 
-### Clone
+   ```bash
+   cd concesionaria-payload && cp .env.example .env
+   ```
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+   You will need to update `DATABASE_URI` with your PostgreSQL connection string, `PAYLOAD_SECRET` with a secure random string, and `UPLOADTHING_TOKEN` with your UploadThing token.
 
-### Development
+3. Install dependencies.
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+   ```bash
+   pnpm install
+   ```
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+4. Start up the development server and PostgreSQL instance.
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+   ```bash
+   docker compose up -d
+   ```
 
-#### Docker (Optional)
+5. Visit [localhost:3000](http://localhost:3000) to see the app in your browser.
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user.
 
-To do so, follow these steps:
-
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
-
-## How it works
-
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
-
-### Collections
+## Collections
 
 See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
 
-- #### Users (Authentication)
+### Users (Authentication)
 
-  Users are auth-enabled collections that have access to the admin panel.
+Users are auth-enabled collections that have access to the admin panel.
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
 
-- #### Media
+### Media
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
 
-### Docker
+### Vehicles
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+This collection manages the vehicles available in the dealership, which are displayed on the [vehicles page of the website](http://localhost:3000/vehiculos).
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+### Frequently Asked Questions
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+This collection manages the frequently asked questions for the dealership, which are displayed on the [home page of the website](http://localhost:3000).
