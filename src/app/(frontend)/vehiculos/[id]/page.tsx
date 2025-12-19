@@ -62,8 +62,10 @@ export default async function VehiclePage({ params }: Props) {
       <div className="@container space-y-8">
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
-            <Badge>{year}</Badge>
-            <Badge>{kilometers.toLocaleString('es-AR')} km</Badge>
+            <Badge variant="secondary">{year}</Badge>
+            <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
+              {kilometers.toLocaleString('es-AR')} km
+            </Badge>
           </div>
           <h1 className="text-3xl font-bold tracking-tight">
             {brand} {model} {trim}

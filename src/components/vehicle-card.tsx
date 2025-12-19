@@ -47,8 +47,10 @@ export default function VehicleCard({ vehicle, className, ...props }: Props) {
         </CardTitle>
         <CardDescription>
           <div className="flex flex-wrap gap-2">
-            <Badge>{year}</Badge>
-            <Badge>{kilometers.toLocaleString('es-AR')} km</Badge>
+            <Badge variant="secondary">{year}</Badge>
+            <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
+              {kilometers.toLocaleString('es-AR')} km
+            </Badge>
           </div>
         </CardDescription>
       </CardContent>
