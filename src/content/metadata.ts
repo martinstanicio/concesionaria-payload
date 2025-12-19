@@ -17,7 +17,7 @@ export const keywords = [
   'financiacion',
 ]
 export const url = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? new URL(process.env.VERCEL_PROJECT_PRODUCTION_URL)
+  ? new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
   : undefined
 
 export const metadata: Metadata = {
