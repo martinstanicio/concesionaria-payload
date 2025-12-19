@@ -16,10 +16,12 @@ export const keywords = [
   'permutas',
   'financiacion',
 ]
-// export const url = new URL('https://www.concesionaria.com/')
+export const url = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? new URL(process.env.VERCEL_PROJECT_PRODUCTION_URL)
+  : undefined
 
 export const metadata: Metadata = {
-  // metadataBase: url,
+  metadataBase: url,
   title: {
     template: `%s | ${siteName}`,
     default: `${title} | ${siteName}`,
@@ -34,6 +36,6 @@ export const metadata: Metadata = {
     description,
     type: 'website',
     locale: 'es',
-    // url,
+    url,
   },
 }
