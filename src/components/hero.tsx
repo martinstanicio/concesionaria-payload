@@ -24,11 +24,13 @@ export default function Hero({ className, ...props }: Props) {
 
       <div className="relative z-10 container mx-auto space-y-12 px-4 py-24 text-center md:space-y-12 xl:max-w-6xl">
         <div className="space-y-4 text-balance">
-          <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl">
-            Encontrá exactamente lo que estás buscando
+          <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl">
+            El auto que buscás,
+            <br /> al mejor precio
           </h1>
-          <p className="text-muted-foreground text-lg">
-            Navegá por nuestra amplia selección de vehículos usados y 0km.
+          <p className="text-muted-foreground mx-auto text-lg sm:max-w-md">
+            Encontrá vehículos 0km y usados seleccionados con la mejor financiación y garantía del
+            mercado.
           </p>
         </div>
 
