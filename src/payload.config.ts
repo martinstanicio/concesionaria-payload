@@ -9,12 +9,22 @@ import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { en } from '@payloadcms/translations/languages/en'
 import { es } from '@payloadcms/translations/languages/es'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig, Plugin } from 'payload'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const plugins: Plugin[] = []
+
+if (process.env.UPLOADTHING_TOKEN) {
+  plugins.push(
+    uploadthingStorage({
+      collections: { media: true },
+      options: { token: process.env.UPLOADTHING_TOKEN },
+    }),
+  )
+}
 
 export default buildConfig({
   admin: {
@@ -35,12 +45,7 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [
-    uploadthingStorage({
-      collections: { media: true },
-      options: { token: process.env.UPLOADTHING_TOKEN || '' },
-    }),
-  ],
+  plugins,
   i18n: {
     supportedLanguages: { en, es },
     fallbackLanguage: 'es',
