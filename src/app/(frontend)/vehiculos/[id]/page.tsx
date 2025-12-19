@@ -1,5 +1,6 @@
 import CarouselOrImage from '@/components/carousel-or-image'
 import SimpleIcon from '@/components/simple-icon'
+import SuggestedVehicles from '@/components/suggested-vehicles'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -56,66 +57,71 @@ export default async function VehiclePage({ params }: Props) {
   )
 
   return (
-    <main className="container mx-auto grid grid-cols-1 gap-8 px-4 py-8 lg:grid-cols-2 lg:gap-12">
-      <CarouselOrImage images={images} />
+    <div className="container mx-auto space-y-12 px-4 py-8">
+      <main className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+        <CarouselOrImage images={images} />
 
-      <div className="@container space-y-8">
-        <div className="space-y-2">
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">{year}</Badge>
-            <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
-              {kilometers.toLocaleString('es-AR')} km
-            </Badge>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            {brand} {model} {trim}
-          </h1>
-        </div>
+        <div className="@container space-y-8">
+          <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="secondary">{year}</Badge>
+              <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
+                {kilometers.toLocaleString('es-AR')} km
+              </Badge>
+            </div>
 
-        <div className="space-y-4">
-          <p className="text-3xl font-bold">{currencyFormatter[currency].format(price)}</p>
-
-          <div className="flex gap-2 @max-lg:flex-col @lg:@max-2xl:flex-wrap">
-            <Button variant="default" size="lg" asChild className="grow @lg:@max-2xl:basis-full">
-              <Link href={whatsAppUrl.toString()} className="space-x-2">
-                <SimpleIcon icon={siWhatsapp} className="text-inherit" />
-                <span>Hablar por WhatsApp</span>
-              </Link>
-            </Button>
-
-            <Button variant="secondary" size="lg" asChild className="grow">
-              <Link href={`tel:${phone}`} className="space-x-2">
-                <Phone />
-                <span>Llamar por teléfono</span>
-              </Link>
-            </Button>
-
-            <Button variant="secondary" size="lg" asChild className="grow">
-              <Link href={googleMapsUrl} className="space-x-2">
-                <MapPin />
-                <span>Visitar personalmente</span>
-              </Link>
-            </Button>
+            <h1 className="text-3xl font-bold tracking-tight">
+              {brand} {model} {trim}
+            </h1>
           </div>
 
-          <p className="text-muted-foreground">
-            ¿Estás teniendo problemas para contactarnos? Encontrá toda nuestra información de
-            contacto{' '}
-            <Link href="/contacto" className="underline">
-              acá
-            </Link>
-            .
-          </p>
-        </div>
+          <div className="space-y-4">
+            <p className="text-3xl font-bold">{currencyFormatter[currency].format(price)}</p>
 
-        <Separator className="my-8" />
+            <div className="flex gap-2 @max-lg:flex-col @lg:@max-2xl:flex-wrap">
+              <Button variant="default" size="lg" asChild className="grow @lg:@max-2xl:basis-full">
+                <Link href={whatsAppUrl.toString()} className="space-x-2">
+                  <SimpleIcon icon={siWhatsapp} className="text-inherit" />
+                  <span>Hablar por WhatsApp</span>
+                </Link>
+              </Button>
+              <Button variant="secondary" size="lg" asChild className="grow">
+                <Link href={`tel:${phone}`} className="space-x-2">
+                  <Phone />
+                  <span>Llamar por teléfono</span>
+                </Link>
+              </Button>
+              <Button variant="secondary" size="lg" asChild className="grow">
+                <Link href={googleMapsUrl} className="space-x-2">
+                  <MapPin />
+                  <span>Visitar personalmente</span>
+                </Link>
+              </Button>
+            </div>
 
-        <div className="prose dark:prose-invert max-w-none space-y-2">
-          <h2>Descripción</h2>
-          <RichText data={description} />
+            <p className="text-muted-foreground">
+              ¿Estás teniendo problemas para contactarnos? Encontrá toda nuestra información de
+              contacto{' '}
+              <Link href="/contacto" className="underline">
+                acá
+              </Link>
+              .
+            </p>
+          </div>
+
+          <Separator />
+
+          <div className="prose dark:prose-invert max-w-none space-y-2">
+            <h2>Descripción</h2>
+            <RichText data={description} />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      <Separator />
+
+      <SuggestedVehicles vehicle={vehicle} />
+    </div>
   )
 }
 
