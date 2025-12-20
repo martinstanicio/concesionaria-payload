@@ -17,6 +17,8 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import { siWhatsapp } from 'simple-icons'
 
+export const dynamic = 'force-dynamic'
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config })
   const vehicles = await payload.find({
