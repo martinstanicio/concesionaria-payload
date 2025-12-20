@@ -1,6 +1,7 @@
 import Footer from '@/components/footer'
 import Navbar from '@/components/navbar'
 import '@/globals.css'
+import { Analytics } from '@vercel/analytics/next'
 
 export { metadata } from '@/content/metadata'
 
@@ -13,6 +14,7 @@ export default async function RootLayout({ children }: Props) {
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
