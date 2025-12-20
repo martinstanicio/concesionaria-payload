@@ -1,6 +1,6 @@
 type Props = React.ComponentProps<'svg'>
 
-export default function Logo(props: Props) {
+export function Logo(props: Props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102.4 102.4" {...props}>
       <path

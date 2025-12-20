@@ -1,7 +1,7 @@
-import PaginationBar from './pagination-bar'
-import SearchBar from './search-bar'
-import SortingBar from './sorting-bar'
-import VehiclesGrid from './vehicles-grid'
+import { PaginationBar } from './pagination-bar'
+import { SearchBar } from './search-bar'
+import { SortingBar } from './sorting-bar'
+import { VehiclesGrid } from './vehicles-grid'
 import { cn } from '@/lib/utils'
 import config from '@/payload.config'
 import { getPayload } from 'payload'
@@ -14,7 +14,7 @@ type Props = React.ComponentProps<'div'> & {
   limit?: number
 }
 
-export default async function VehiclesCatalogue({
+export async function VehiclesCatalogue({
   page,
   sort,
   search,

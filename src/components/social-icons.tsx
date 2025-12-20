@@ -1,12 +1,12 @@
 import { Button } from './ui/button'
-import SimpleIcon from '@/components/simple-icon'
+import { SimpleIcon } from '@/components/simple-icon'
 import { social } from '@/content/social'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 type Props = React.ComponentProps<'div'>
 
-export default function SocialIcons({ className, ...props }: Props) {
+export function SocialIcons({ className, ...props }: Props) {
   return (
     <div className={cn('flex flex-wrap justify-center gap-4', className)} {...props}>
       {social.map(({ title, href, icon }) => (

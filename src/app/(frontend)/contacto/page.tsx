@@ -1,5 +1,5 @@
-import SimpleIcon from '@/components/simple-icon'
-import SocialIcons from '@/components/social-icons'
+import { SimpleIcon } from '@/components/simple-icon'
+import { SocialIcons } from '@/components/social-icons'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   address,

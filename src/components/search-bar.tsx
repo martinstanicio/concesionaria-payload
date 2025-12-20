@@ -9,7 +9,7 @@ import { useDebounce } from 'use-debounce'
 
 type Props = React.ComponentProps<'div'>
 
-export default function SearchBar({ className, ...props }: Props) {
+export function SearchBar({ className, ...props }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [search, setSearch] = useState(searchParams.get('search') || '')

@@ -5,7 +5,9 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 
-export default async function FAQs(props: React.ComponentProps<'section'>) {
+type Props = React.ComponentProps<'section'>
+
+export async function FAQs(props: Props) {
   const payload = await getPayload({ config })
   const faqs = await payload.find({
     collection: 'frequently-asked-questions',

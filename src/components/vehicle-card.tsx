@@ -7,17 +7,12 @@ import { Vehicle } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = React.ComponentProps<'div'> & {
+type Props = React.ComponentProps<typeof Card> & {
   vehicle: Vehicle
   headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
-export default function VehicleCard({
-  vehicle,
-  headingLevel: Heading,
-  className,
-  ...props
-}: Props) {
+export function VehicleCard({ vehicle, headingLevel: Heading, className, ...props }: Props) {
   const { id, brand, model, trim, year, kilometers, price, currency, images } = vehicle
 
   if (!isPopulatedList(images)) {

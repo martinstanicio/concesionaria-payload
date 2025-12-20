@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 type Props = React.ComponentProps<'section'>
 
-export default function GetInTouch({ className, ...props }: Props) {
+export function GetInTouch({ className, ...props }: Props) {
   return (
     <section
       className={cn(

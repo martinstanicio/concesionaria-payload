@@ -1,4 +1,4 @@
-import VehiclesCatalogue from '@/components/vehicles-catalogue'
+import { VehiclesCatalogue } from '@/components/vehicles-catalogue'
 import { Metadata } from 'next'
 
 const title = 'Vehículos'

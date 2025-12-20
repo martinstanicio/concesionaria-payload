@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-import VehiclesGrid from './vehicles-grid'
+import { VehiclesGrid } from './vehicles-grid'
 import { cn } from '@/lib/utils'
 import { Vehicle } from '@/payload-types'
 import config from '@/payload.config'
@@ -12,7 +12,7 @@ type Props = React.ComponentProps<'section'> & {
   vehicle: Vehicle
 }
 
-export default async function SuggestedVehicles({ vehicle, className, ...props }: Props) {
+export async function SuggestedVehicles({ vehicle, className, ...props }: Props) {
   const vehicles: Vehicle[] = []
   const payload = await getPayload({ config })
   const sameModelVehicles = await payload.find({

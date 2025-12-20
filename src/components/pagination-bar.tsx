@@ -11,12 +11,12 @@ import {
 } from '@/components/ui/pagination'
 import { Fragment, useEffect, useState } from 'react'
 
-type Props = React.ComponentProps<'nav'> & {
+type Props = React.ComponentProps<typeof Pagination> & {
   totalPages: number
   currentPage: number
 }
 
-export default function PaginationBar({ totalPages, currentPage, ...props }: Props) {
+export function PaginationBar({ totalPages, currentPage, ...props }: Props) {
   const [baseUrl, setBaseUrl] = useState<string>('')
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-import VehicleCard from './vehicle-card'
+import { VehicleCard } from './vehicle-card'
 import { cn } from '@/lib/utils'
 import config from '@/payload.config'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { getPayload } from 'payload'
 
 type Props = React.ComponentProps<'section'>
 
-export default async function FeaturedVehicles(props: Props) {
+export async function FeaturedVehicles(props: Props) {
   const payload = await getPayload({ config })
   const vehicles = await payload.find({
     collection: 'vehicles',

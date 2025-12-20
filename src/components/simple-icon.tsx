@@ -5,7 +5,7 @@ type Props = React.ComponentProps<'span'> & {
   icon: SimpleIconType
 }
 
-export default function SimpleIcon({ icon, style, className, ...props }: Props) {
+export function SimpleIcon({ icon, style, className, ...props }: Props) {
   // We use a CSS custom property to set the icon color to keep specificity low,
   // so the color can easily be overridden using Tailwind classes.
   return (

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 type Props = React.ComponentProps<'div'>
 
-export default function AboutUs({ className, ...props }: Props) {
+export function AboutUs({ className, ...props }: Props) {
   return (
     <div className={cn('bg-background text-foreground dark relative w-full', className)} {...props}>
       <Image

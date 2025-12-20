@@ -1,7 +1,7 @@
 'use client'
 
-import Brand from './brand'
-import SocialIcons from './social-icons'
+import { Brand } from './brand'
+import { SocialIcons } from './social-icons'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -24,7 +24,7 @@ import Link from 'next/link'
 
 type Props = React.ComponentProps<'header'>
 
-export default function Navbar({ className, ...props }: Props) {
+export function Navbar({ className, ...props }: Props) {
   return (
     <header className={cn('bg-background sticky top-0 z-50 w-full border-b', className)} {...props}>
       <div className="container mx-auto flex items-center gap-8 p-4 max-md:justify-between">

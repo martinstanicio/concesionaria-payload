@@ -1,5 +1,5 @@
-import Brand from './brand'
-import SocialIcons from './social-icons'
+import { Brand } from './brand'
+import { SocialIcons } from './social-icons'
 import { Button } from '@/components/ui/button'
 import { siteName } from '@/content/metadata'
 import { cn } from '@/lib/utils'
@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 type Props = React.ComponentProps<'footer'>
 
-export default function Footer({ className, ...props }: Props) {
+export function Footer({ className, ...props }: Props) {
   return (
     <footer className={cn('bg-background w-full border-t', className)} {...props}>
       <div className="container mx-auto space-y-8 p-4">

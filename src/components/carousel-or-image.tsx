@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react'
 
 type Props = React.ComponentProps<typeof Carousel> & { images: Media[] }
 
-export default function CarouselOrImage({ images: _images, opts, className, ...props }: Props) {
+export function CarouselOrImage({ images: _images, opts, className, ...props }: Props) {
   if (_images.length === 0) throw new Error('At least one image is required.')
 
   const images = _images.map(({ id, url, width, height, alt }) => {

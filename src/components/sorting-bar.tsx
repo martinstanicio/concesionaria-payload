@@ -16,7 +16,7 @@ const sortingOptions = [
 
 type Props = React.ComponentProps<typeof Select>
 
-export default function SortingBar(props: Props) {
+export function SortingBar(props: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const defaultSort = searchParams.get('sort') || sortingOptions[0].value

@@ -1,4 +1,4 @@
-import SearchBar from './search-bar'
+import { SearchBar } from './search-bar'
 import heroImage from '@/assets/hero.jpg'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -8,7 +8,7 @@ import { Suspense } from 'react'
 
 type Props = React.ComponentProps<'section'>
 
-export default function Hero({ className, ...props }: Props) {
+export function Hero({ className, ...props }: Props) {
   return (
     <section
       className={cn('bg-background text-foreground dark relative w-full', className)}
