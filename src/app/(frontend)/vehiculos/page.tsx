@@ -22,6 +22,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     description,
     alternates: { canonical: url },
     openGraph: {
+      ..._metadata.openGraph,
       title: `${_title} | ${siteName}`,
       description,
       url,

@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords,
     alternates: { canonical: url },
     openGraph: {
+      ..._metadata.openGraph,
       title: `${title} | ${siteName}`,
       description,
       url,
