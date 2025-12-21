@@ -76,11 +76,7 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    media: {
-      vehicles: 'vehicles';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -161,11 +157,6 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  vehicles?: {
-    docs?: (number | Vehicle)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
   _key?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -353,7 +344,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  vehicles?: T;
   _key?: T;
   updatedAt?: T;
   createdAt?: T;

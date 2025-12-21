@@ -8,7 +8,7 @@ export const Media: CollectionConfig = {
     plural: { en: 'Media', es: 'Medios' },
   },
   admin: {
-    defaultColumns: ['filename', 'alt', 'vehicles'],
+    defaultColumns: ['filename', 'alt'],
     description: {
       en: 'This collection contains the images uploaded by users.',
       es: 'Esta colección contiene las imágenes subidas por los usuarios.',
@@ -25,13 +25,6 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
-    },
-    {
-      label: { en: 'Vehicles', es: 'Vehículos' },
-      name: 'vehicles',
-      type: 'join',
-      collection: 'vehicles',
-      on: 'images',
     },
   ],
   upload: {
