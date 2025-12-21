@@ -1,10 +1,10 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 export const siteName = 'CONCESIONARIA'
 export const title = 'Venta de autos nuevos y usados en CIUDAD'
-export const description =
-  'Encontrá tu próximo auto en CONCESIONARIA. Amplio stock de usados seleccionados y 0km. Tomamos tu usado, ofrecemos financiación y gestoría. ¡Visitanos en CIUDAD!'
+export const description = `Encontrá tu próximo auto en ${siteName}. Amplio stock de usados seleccionados y 0km. Tomamos tu usado, ofrecemos financiación y gestoría. ¡Visitanos en CIUDAD!`
 export const keywords = [
+  siteName,
   'concesionaria',
   'venta de autos',
   'autos nuevos',
@@ -20,22 +20,22 @@ export const url = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`)
   : undefined
 
+export const viewport: Viewport = { colorScheme: 'light dark' }
+
 export const metadata: Metadata = {
   metadataBase: url,
-  title: {
-    template: `%s | ${siteName}`,
-    default: `${title} | ${siteName}`,
-  },
+  title: `${title} | ${siteName}`,
   description,
+  generator: 'Next.js',
   keywords,
   creator: 'Martín Stanicio',
-  generator: 'Next.js',
+  alternates: { canonical: '/' },
   openGraph: {
-    siteName,
-    title,
-    description,
     type: 'website',
-    locale: 'es',
-    url,
+    title: `${title} | ${siteName}`,
+    description,
+    siteName,
+    locale: 'es_AR',
+    url: '/',
   },
 }

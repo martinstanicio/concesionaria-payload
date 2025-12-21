@@ -5,13 +5,14 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { googleMapsUrl, phone } from '@/content/contact-info'
+import { keywords as _keywords, metadata as _metadata, siteName } from '@/content/metadata'
 import * as currencyFormatter from '@/lib/currency'
 import { isPopulatedList } from '@/lib/is-populated'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import config from '@/payload.config'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { MapPin, Phone } from 'lucide-react'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
@@ -33,6 +34,59 @@ export async function generateStaticParams() {
 
 type Props = {
   params: Promise<{ id: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const payload = await getPayload({ config })
+  const vehicle = await payload.findByID({
+    collection: 'vehicles',
+    id,
+    depth: 1,
+    disableErrors: true,
+  })
+
+  if (!vehicle) notFound()
+
+  if (vehicle.images.length === 0) throw new Error('Vehicles must have at least one image.')
+
+  if (!isPopulatedList(vehicle.images)) {
+    throw new Error('Vehicle images must be populated. Try increasing depth.')
+  }
+
+  const image = vehicle.images[0]
+
+  if (
+    typeof image.url !== 'string' ||
+    typeof image.width !== 'number' ||
+    typeof image.height !== 'number'
+  ) {
+    throw new Error('Images must have `url`, `width` and `height`.')
+  }
+
+  const title = vehicle.title
+  const description = `Comprá tu ${vehicle.title} por tan solo ${currencyFormatter[vehicle.currency].format(vehicle.price)}. ¡Contáctanos hoy mismo!`
+  const url = `/vehiculos/${vehicle.id}`
+  const keywords = [vehicle.title, vehicle.brand, vehicle.model, ..._keywords]
+
+  return {
+    ..._metadata,
+    title: `${title} | ${siteName}`,
+    description,
+    keywords,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${title} | ${siteName}`,
+      description,
+      url,
+      images: {
+        url: image.url,
+        width: image.width,
+        height: image.height,
+        alt: image.alt,
+      },
+    },
+  }
 }
 
 export default async function VehiclePage({ params }: Props) {
@@ -125,45 +179,4 @@ export default async function VehiclePage({ params }: Props) {
       <SuggestedVehicles vehicle={vehicle} />
     </div>
   )
-}
-
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { id } = await params
-  const payload = await getPayload({ config })
-  const vehicle = await payload.findByID({
-    collection: 'vehicles',
-    id,
-    depth: 1,
-    disableErrors: true,
-  })
-
-  if (!vehicle) notFound()
-
-  if (!isPopulatedList(vehicle.images)) {
-    throw new Error('Vehicle images must be populated. Try increasing depth.')
-  }
-
-  const parentKeywords = (await parent).keywords || []
-
-  const title = vehicle.title
-  const description = `Comprá tu ${vehicle.title} por tan solo ${currencyFormatter[vehicle.currency].format(vehicle.price)}. ¡Contáctanos hoy mismo!`
-  const url = `/vehiculos/${vehicle.id}`
-  const keywords = [vehicle.title, vehicle.brand, vehicle.model, ...parentKeywords]
-  const images = vehicle.images.map(({ url, width, height, alt }) => {
-    if (typeof url !== 'string' || typeof width !== 'number' || typeof height !== 'number') {
-      throw new Error('Images must have `url`, `width` and `height`.')
-    }
-
-    return { url, width, height, alt }
-  })
-
-  return {
-    title,
-    description,
-    keywords,
-    openGraph: { title, description, url, images },
-  }
 }

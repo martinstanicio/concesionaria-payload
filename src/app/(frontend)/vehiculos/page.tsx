@@ -1,4 +1,5 @@
 import { VehiclesCatalogue } from '@/components/vehicles-catalogue'
+import { metadata as _metadata, siteName } from '@/content/metadata'
 import { Metadata } from 'next'
 
 const title = 'Vehículos'
@@ -6,20 +7,30 @@ const description =
   '¿Estás buscando tu próximo auto? Explorá nuestro catálogo completo de vehículos usados y 0km.'
 const url = '/vehiculos'
 
+type Props = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const { search } = await searchParams
 
   const _title = search ? `"${search}"` : title
 
   return {
-    title: _title,
+    ..._metadata,
+    title: `${_title} | ${siteName}`,
     description,
-    openGraph: { title: _title, description, url },
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${_title} | ${siteName}`,
+      description,
+      url,
+    },
+    // pagination: {
+    //   previous: null,
+    //   next: null,
+    // },
   }
-}
-
-type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function VehiclesPage({ searchParams }: Props) {

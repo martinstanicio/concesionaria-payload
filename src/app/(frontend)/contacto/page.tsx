@@ -9,7 +9,7 @@ import {
   googleMapsUrl,
   phone,
 } from '@/content/contact-info'
-import { siteName } from '@/content/metadata'
+import { metadata as _metadata, siteName } from '@/content/metadata'
 import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { Metadata } from 'next'
@@ -21,9 +21,15 @@ const description =
 const url = '/contacto'
 
 export const metadata: Metadata = {
-  title,
+  ..._metadata,
+  title: `${title} | ${siteName}`,
   description,
-  openGraph: { title, description, url },
+  alternates: { canonical: url },
+  openGraph: {
+    title: `${title} | ${siteName}`,
+    description,
+    url: url,
+  },
 }
 
 export default function ContactPage() {
@@ -63,7 +69,7 @@ export default function ContactPage() {
   return (
     <section className="container mx-auto space-y-6 px-4 py-8 xl:max-w-6xl">
       <header>
-        <h1 className="mb-2 text-3xl font-bold">Contacto</h1>
+        <h1 className="mb-2 text-3xl font-bold">{title}</h1>
         <p className="text-muted-foreground">{description}</p>
       </header>
 
