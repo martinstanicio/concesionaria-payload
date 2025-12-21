@@ -34,44 +34,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!vehicle) notFound()
 
-  if (vehicle.images.length === 0) throw new Error('Vehicles must have at least one image.')
-
   if (!isPopulatedList(vehicle.images)) {
     throw new Error('Vehicle images must be populated. Try increasing depth.')
-  }
-
-  const image = vehicle.images[0]
-
-  if (
-    typeof image.url !== 'string' ||
-    typeof image.width !== 'number' ||
-    typeof image.height !== 'number'
-  ) {
-    throw new Error('Images must have `url`, `width` and `height`.')
   }
 
   const title = vehicle.title
   const description = `Comprá tu ${vehicle.title} por tan solo ${currencyFormatter[vehicle.currency].format(vehicle.price)}. ¡Contáctanos hoy mismo!`
   const url = `/vehiculos/${vehicle.id}`
-  const keywords = [vehicle.title, vehicle.brand, vehicle.model, ..._keywords]
+  const openGraphImage = vehicle.images.at(0)?.sizes?.ogimage || vehicle.images.at(0)
 
   return {
     ..._metadata,
     title: `${title} | ${siteName}`,
     description,
-    keywords,
+    keywords: [vehicle.title, vehicle.brand, vehicle.model, ..._keywords],
     alternates: { canonical: url },
     openGraph: {
       ..._metadata.openGraph,
       title: `${title} | ${siteName}`,
       description,
       url,
-      images: {
-        url: image.url,
-        width: image.width,
-        height: image.height,
-        alt: image.alt,
-      },
+      images: openGraphImage?.url
+        ? {
+            url: openGraphImage.url,
+            alt: vehicle.images.at(0)?.alt,
+            width: openGraphImage.width || undefined,
+            height: openGraphImage.height || undefined,
+          }
+        : undefined,
     },
   }
 }
@@ -87,11 +77,24 @@ export default async function VehiclePage({ params }: Props) {
   })
 
   if (!vehicle) notFound()
-  const { brand, model, trim, year, kilometers, description, price, currency, images } = vehicle
+  const { brand, model, trim, year, kilometers, description, price, currency } = vehicle
 
-  if (!isPopulatedList(images)) {
+  if (!isPopulatedList(vehicle.images)) {
     throw new Error('Vehicle images must be populated. Try increasing depth.')
   }
+
+  const images: React.ComponentProps<typeof CarouselOrImage>['images'] = []
+  vehicle.images.forEach((image) => {
+    const key = image.id
+    const src = image.sizes?.base?.url || image.url
+    const alt = image.alt
+    const width = image.sizes?.base?.width || image.width || undefined
+    const height = image.sizes?.base?.height || image.height || undefined
+
+    if (!src) return
+
+    images.push({ key, src, alt, width, height })
+  })
 
   const pageUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/vehiculos/${id}`
   const whatsAppUrl = getWhatsAppUrl(

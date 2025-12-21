@@ -29,5 +29,26 @@ export const Media: CollectionConfig = {
   ],
   upload: {
     mimeTypes: ['image/*'],
+    crop: false,
+    focalPoint: true,
+    imageSizes: [
+      {
+        name: 'base',
+        width: 2048,
+        height: 1536,
+        withoutEnlargement: true,
+        generateImageName: ({ originalName, extension }) => {
+          return `${originalName}-base.${extension}`
+        },
+      },
+      {
+        name: 'ogimage',
+        width: 1200,
+        height: 630,
+        generateImageName: ({ originalName, extension }) => {
+          return `${originalName}-ogimage.${extension}`
+        },
+      },
+    ],
   },
 }
