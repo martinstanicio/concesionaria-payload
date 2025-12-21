@@ -10,9 +10,9 @@ export function AboutUs({ className, ...props }: Props) {
       <Image
         src={aboutUsImage}
         alt=""
+        sizes="auto"
         fill
         className="inset-0 z-0 object-cover object-center opacity-15"
-        priority
       />
 
       <section className="relative z-10 mx-auto max-w-2xl space-y-4 px-4 py-24 text-center text-balance">
