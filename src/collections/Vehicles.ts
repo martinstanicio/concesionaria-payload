@@ -76,18 +76,6 @@ export const Vehicles: CollectionConfig = {
       min: 0,
     },
     {
-      label: { en: 'Description', es: 'Descripción' },
-      name: 'description',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures,
-          HeadingFeature({ enabledHeadingSizes: ['h3', 'h4', 'h5', 'h6'] }),
-        ],
-      }),
-      required: true,
-    },
-    {
       type: 'row',
       fields: [
         {
@@ -115,6 +103,18 @@ export const Vehicles: CollectionConfig = {
       hasMany: true,
       minRows: 1,
       displayPreview: true,
+    },
+    {
+      label: { en: 'Description', es: 'Descripción' },
+      name: 'description',
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => [
+          ...rootFeatures,
+          HeadingFeature({ enabledHeadingSizes: ['h3', 'h4', 'h5', 'h6'] }),
+        ],
+      }),
+      required: true,
     },
   ],
 }

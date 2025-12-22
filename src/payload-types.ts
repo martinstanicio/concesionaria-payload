@@ -213,6 +213,9 @@ export interface Vehicle {
   trim?: string | null;
   year: number;
   kilometers: number;
+  price: number;
+  currency: 'USD' | 'ARS';
+  images: (number | Media)[];
   description: {
     root: {
       type: string;
@@ -228,9 +231,6 @@ export interface Vehicle {
     };
     [k: string]: unknown;
   };
-  price: number;
-  currency: 'USD' | 'ARS';
-  images: (number | Media)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -434,10 +434,10 @@ export interface VehiclesSelect<T extends boolean = true> {
   trim?: T;
   year?: T;
   kilometers?: T;
-  description?: T;
   price?: T;
   currency?: T;
   images?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
