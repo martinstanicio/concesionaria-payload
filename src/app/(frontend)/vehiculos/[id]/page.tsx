@@ -86,12 +86,20 @@ export default async function VehiclePage({ params }: Props) {
   const images: React.ComponentProps<typeof CarouselOrImage>['images'] = []
   vehicle.images.forEach((image) => {
     const key = image.id
-    const src = image.sizes?.base?.url || image.url
     const alt = image.alt
-    const width = image.sizes?.base?.width || image.width || undefined
-    const height = image.sizes?.base?.height || image.height || undefined
+    let src: string
+    let width: number | undefined
+    let height: number | undefined
 
-    if (!src) return
+    if (image.sizes?.base?.url) {
+      src = image.sizes.base.url
+      width = image.sizes.base.width || undefined
+      height = image.sizes.base.height || undefined
+    } else if (image.url) {
+      src = image.url
+      width = image.width || undefined
+      height = image.height || undefined
+    } else return
 
     images.push({ key, src, alt, width, height })
   })

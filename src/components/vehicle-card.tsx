@@ -19,21 +19,33 @@ export function VehicleCard({ vehicle, headingLevel: Heading, className, ...prop
     throw new Error('Vehicle images must be populated. Try increasing depth.')
   }
 
-  if (
-    typeof images[0].url !== 'string' ||
-    typeof images[0].width !== 'number' ||
-    typeof images[0].height !== 'number'
-  ) {
-    throw new Error('Images must have `url`, `width` and `height`.')
-  }
+  const firstImage = images.at(0)
+  if (!firstImage) throw new Error('Vehicle must have at least one image.')
+
+  const alt = firstImage.alt
+  let src: string
+  let width: number | undefined
+  let height: number | undefined
+
+  if (firstImage.sizes?.base?.url) {
+    src = firstImage.sizes.base.url
+    width = firstImage.sizes.base.width || undefined
+    height = firstImage.sizes.base.height || undefined
+  } else if (firstImage.url) {
+    src = firstImage.url
+    width = firstImage.width || undefined
+    height = firstImage.height || undefined
+  } else return
+
+  const image = { src, alt, width, height }
 
   return (
     <Card className={cn('relative gap-0 overflow-hidden py-0', className)} {...props}>
       <Image
-        src={images[0].url}
-        alt={images[0].alt}
-        width={images[0].width}
-        height={images[0].height}
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
         className="bg-secondary aspect-4/3 object-cover object-center"
       />
       <CardContent className="flex h-full flex-col justify-between gap-2 p-4">
