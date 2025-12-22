@@ -134,19 +134,19 @@ export default async function VehiclePage({ params }: Props) {
 
             <div className="flex gap-2 @max-lg:flex-col @lg:@max-2xl:flex-wrap">
               <Button variant="default" size="lg" asChild className="grow @lg:@max-2xl:basis-full">
-                <Link href={whatsAppUrl.toString()} className="space-x-2">
+                <Link href={whatsAppUrl.toString()} target="_blank" className="space-x-2">
                   <SimpleIcon icon={siWhatsapp} className="text-inherit" />
                   <span>Hablar por WhatsApp</span>
                 </Link>
               </Button>
               <Button variant="secondary" size="lg" asChild className="grow">
-                <Link href={`tel:${phone}`} className="space-x-2">
+                <Link href={`tel:${phone}`} target="_blank" className="space-x-2">
                   <Phone />
                   <span>Llamar por teléfono</span>
                 </Link>
               </Button>
               <Button variant="secondary" size="lg" asChild className="grow">
-                <Link href={googleMapsUrl} className="space-x-2">
+                <Link href={googleMapsUrl} target="_blank" className="space-x-2">
                   <MapPin />
                   <span>Visitar personalmente</span>
                 </Link>
