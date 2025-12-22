@@ -31,6 +31,7 @@ export const Media: CollectionConfig = {
     mimeTypes: ['image/*'],
     crop: false,
     focalPoint: true,
+    adminThumbnail: 'thumbnail',
     imageSizes: [
       {
         name: 'base',
@@ -47,6 +48,14 @@ export const Media: CollectionConfig = {
         height: 630,
         generateImageName: ({ originalName, extension }) => {
           return `${originalName}-ogimage.${extension}`
+        },
+      },
+      {
+        name: 'thumbnail',
+        width: 256,
+        height: 256,
+        generateImageName: ({ originalName, extension }) => {
+          return `${originalName}-thumbnail.${extension}`
         },
       },
     ],
