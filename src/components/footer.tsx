@@ -29,7 +29,9 @@ export function Footer({ className, ...props }: Props) {
           </p>
 
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/admin">Tablero de administrador</Link>
+            <Link href="/admin" target="_blank">
+              Tablero de administrador
+            </Link>
           </Button>
         </div>
       </div>
