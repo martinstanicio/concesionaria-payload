@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 
-export const siteName = 'CONCESIONARIA'
-export const title = 'Venta de autos nuevos y usados en CIUDAD'
-export const description = `Encontrá tu próximo auto en ${siteName}. Amplio stock de usados seleccionados y 0km. Tomamos tu usado, ofrecemos financiación y gestoría. ¡Visitanos en CIUDAD!`
+export const siteName = 'Stanicio Inc.'
+export const title = 'Venta de autos nuevos y usados en Escobar'
+export const description = `Encontrá tu próximo auto en ${siteName}. Amplio stock de usados seleccionados y 0km. Tomamos tu usado, ofrecemos financiación y gestoría. ¡Visitanos en Escobar!`
 export const keywords = [
   siteName,
   'concesionaria',

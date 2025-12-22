@@ -1,5 +1,5 @@
-export const phone = '+5493484123456'
-export const formattedPhone = '+54 9 348 412-3456'
+export const phone = '+5493484370660'
+export const formattedPhone = '+54 9 348 437-0660'
 export const email = 'contacto@concesionaria.com'
 export const address = 'San Martín 150, Belén de Escobar, Buenos Aires'
 export const googleMapsUrl = 'https://maps.app.goo.gl/Cm2Z33oD3vTMzyTb7'
