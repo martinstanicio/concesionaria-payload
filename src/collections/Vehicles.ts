@@ -1,6 +1,7 @@
 import { anybody, sellerOrAdmin } from '@/lib/collection-access'
 import { HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { CollectionConfig } from 'payload'
+import slugify from 'slugify'
 
 export const Vehicles: CollectionConfig = {
   slug: 'vehicles',
@@ -23,7 +24,40 @@ export const Vehicles: CollectionConfig = {
     update: sellerOrAdmin,
     delete: sellerOrAdmin,
   },
+  hooks: {
+    afterChange: [
+      async ({ doc, req }) => {
+        const id = doc.id
+        const year = doc.year
+        const brand = doc.brand
+        const model = doc.model
+        const trim = doc.trim
+        const newSlug = slugify([id, year, brand, model, trim].filter(Boolean).join(' '), {
+          lower: true,
+          trim: true,
+        })
+
+        if (doc.slug === newSlug) return doc
+
+        await req.payload.update({
+          req,
+          collection: 'vehicles',
+          id: doc.id,
+          data: { slug: newSlug },
+        })
+
+        return doc
+      },
+    ],
+  },
   fields: [
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      index: true,
+      admin: { hidden: true },
+    },
     {
       label: { en: 'Vehicle', es: 'Vehículo' },
       name: 'title',

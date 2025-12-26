@@ -53,6 +53,7 @@
     "react-hook-form": "^7.68.0",
     "sharp": "0.34.2",
     "simple-icons": "^16.2.0",
+    "slugify": "^1.6.6",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
@@ -92,5 +93,5 @@
       "unrs-resolver"
     ]
   },
-  "packageManager": "pnpm@10.26.1"
+  "packageManager": "pnpm@10.26.2"
 }

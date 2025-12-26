@@ -157,7 +157,6 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -171,7 +170,6 @@ export interface Media {
   focalY?: number | null;
   sizes?: {
     base?: {
-      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -180,7 +178,6 @@ export interface Media {
       filename?: string | null;
     };
     ogimage?: {
-      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -189,7 +186,6 @@ export interface Media {
       filename?: string | null;
     };
     thumbnail?: {
-      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -207,6 +203,7 @@ export interface Media {
  */
 export interface Vehicle {
   id: number;
+  slug?: string | null;
   title: string;
   brand: string;
   model: string;
@@ -373,7 +370,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -391,7 +387,6 @@ export interface MediaSelect<T extends boolean = true> {
         base?:
           | T
           | {
-              _key?: T;
               url?: T;
               width?: T;
               height?: T;
@@ -402,7 +397,6 @@ export interface MediaSelect<T extends boolean = true> {
         ogimage?:
           | T
           | {
-              _key?: T;
               url?: T;
               width?: T;
               height?: T;
@@ -413,7 +407,6 @@ export interface MediaSelect<T extends boolean = true> {
         thumbnail?:
           | T
           | {
-              _key?: T;
               url?: T;
               width?: T;
               height?: T;
@@ -428,6 +421,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "vehicles_select".
  */
 export interface VehiclesSelect<T extends boolean = true> {
+  slug?: T;
   title?: T;
   brand?: T;
   model?: T;

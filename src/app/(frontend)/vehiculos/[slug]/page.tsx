@@ -19,11 +19,12 @@ import { getPayload } from 'payload'
 import { siWhatsapp } from 'simple-icons'
 
 type Props = {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params
+  const { slug } = await params
+  const id = +slug.split('-')[0]
   const payload = await getPayload({ config })
   const vehicle = await payload.findByID({
     collection: 'vehicles',
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = vehicle.title
   const description = `Comprá tu ${vehicle.title} por tan solo ${currencyFormatter[vehicle.currency].format(vehicle.price)}. ¡Contáctanos hoy mismo!`
-  const url = `/vehiculos/${vehicle.id}`
+  const url = `/vehiculos/${slug}`
   const openGraphImage = vehicle.images.at(0)?.sizes?.ogimage || vehicle.images.at(0)
 
   return {
@@ -67,7 +68,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function VehiclePage({ params }: Props) {
-  const { id } = await params
+  const { slug } = await params
+  const id = +slug.split('-')[0]
   const payload = await getPayload({ config })
   const vehicle = await payload.findByID({
     collection: 'vehicles',
@@ -104,7 +106,7 @@ export default async function VehiclePage({ params }: Props) {
     images.push({ key, src, alt, width, height })
   })
 
-  const pageUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/vehiculos/${id}`
+  const pageUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/vehiculos/${slug}`
   const whatsAppUrl = getWhatsAppUrl(
     phone,
     `Hola, estoy interesado en el vehículo: ${year} ${brand} ${model} ${trim}.\n\n${pageUrl}`,

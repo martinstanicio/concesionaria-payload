@@ -13,7 +13,7 @@ type Props = React.ComponentProps<typeof Card> & {
 }
 
 export function VehicleCard({ vehicle, headingLevel: Heading, className, ...props }: Props) {
-  const { id, brand, model, trim, year, kilometers, price, currency, images } = vehicle
+  const { slug, brand, model, trim, year, kilometers, price, currency, images } = vehicle
 
   if (!isPopulatedList(images)) {
     throw new Error('Vehicle images must be populated. Try increasing depth.')
@@ -52,7 +52,7 @@ export function VehicleCard({ vehicle, headingLevel: Heading, className, ...prop
         <CardTitle className="mb-2 flex items-start justify-between gap-1">
           <Heading>
             <Link
-              href={`/vehiculos/${id}`}
+              href={`/vehiculos/${slug}`}
               className="before:absolute before:inset-0 hover:underline focus:underline"
             >
               {brand} {model} {trim}
