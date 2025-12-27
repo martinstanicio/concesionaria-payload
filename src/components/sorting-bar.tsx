@@ -29,7 +29,7 @@ export function SortingBar(props: Props) {
 
   return (
     <Select defaultValue={defaultSort} onValueChange={setSort} {...props}>
-      <SelectTrigger className="w-full grow">
+      <SelectTrigger className="w-full grow" aria-label="Ordenar vehículos">
         <SelectValue placeholder="Ordenar por..." />
       </SelectTrigger>
       <SelectContent>
