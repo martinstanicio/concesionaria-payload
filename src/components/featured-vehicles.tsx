@@ -33,6 +33,7 @@ export async function FeaturedVehicles(props: Props) {
               key={vehicle.id}
               vehicle={vehicle}
               headingLevel="h3"
+              sizes="(min-width: 540px) 447px, calc(96.36vw - 54px)"
               className="basis-md"
             />
           ))}

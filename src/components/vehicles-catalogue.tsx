@@ -47,7 +47,7 @@ export async function VehiclesCatalogue({
         </div>
       </div>
 
-      <VehiclesGrid vehicles={vehicles.docs} />
+      <VehiclesGrid vehicles={vehicles.docs} setFirstImagePriority />
 
       <PaginationBar totalPages={vehicles.totalPages} currentPage={vehicles.page || +page} />
     </div>

@@ -7,12 +7,20 @@ import { Vehicle } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = React.ComponentProps<typeof Card> & {
-  vehicle: Vehicle
-  headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-}
+type Props = React.ComponentProps<typeof Card> &
+  Pick<React.ComponentProps<typeof Image>, 'priority' | 'sizes'> & {
+    vehicle: Vehicle
+    headingLevel: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  }
 
-export function VehicleCard({ vehicle, headingLevel: Heading, className, ...props }: Props) {
+export function VehicleCard({
+  vehicle,
+  headingLevel: Heading,
+  priority,
+  sizes,
+  className,
+  ...props
+}: Props) {
   const { slug, brand, model, trim, year, kilometers, price, currency, images } = vehicle
 
   if (!isPopulatedList(images)) {
@@ -46,6 +54,8 @@ export function VehicleCard({ vehicle, headingLevel: Heading, className, ...prop
         alt={image.alt}
         width={image.width}
         height={image.height}
+        priority={priority}
+        sizes={sizes}
         className="bg-secondary aspect-4/3 object-cover object-center"
       />
       <CardContent className="flex h-full flex-col justify-between gap-2 p-4">
