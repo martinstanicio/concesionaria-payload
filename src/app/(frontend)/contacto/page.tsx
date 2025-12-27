@@ -68,14 +68,14 @@ export default function ContactPage() {
   const map = googleMapsEmbedUrl
 
   return (
-    <section className="container mx-auto space-y-6 px-4 py-8 xl:max-w-6xl">
+    <div className="container mx-auto space-y-6 px-4 py-8 xl:max-w-6xl">
       <header>
         <h1 className="mb-2 text-3xl font-bold">{title}</h1>
         <p className="text-muted-foreground">{description}</p>
       </header>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-6">
+        <main className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>
@@ -112,7 +112,7 @@ export default function ContactPage() {
               ))}
             </CardContent>
           </Card>
-        </div>
+        </main>
 
         <Card className="overflow-hidden p-0">
           <CardContent className="p-0">
@@ -126,6 +126,6 @@ export default function ContactPage() {
           </CardContent>
         </Card>
       </div>
-    </section>
+    </div>
   )
 }
