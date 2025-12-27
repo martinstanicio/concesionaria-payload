@@ -43,6 +43,7 @@ export function CarouselOrImage({ images, opts, className, ...props }: Props) {
         width={firstImage.width}
         height={firstImage.height}
         priority
+        sizes="(min-width: 1540px) 728px, (min-width: 1280px) 600px, (min-width: 1040px) 472px, (min-width: 780px) 736px, (min-width: 680px) 608px, calc(94.44vw - 15px)"
         className="bg-secondary aspect-4/3 rounded-md object-cover object-center"
       />
     )
@@ -64,6 +65,7 @@ export function CarouselOrImage({ images, opts, className, ...props }: Props) {
               width={image.width}
               height={image.height}
               priority={index === 0}
+              sizes="(min-width: 1540px) 728px, (min-width: 1280px) 600px, (min-width: 1040px) 472px, (min-width: 780px) 736px, (min-width: 680px) 608px, calc(94.44vw - 15px)"
               className="bg-secondary aspect-4/3 rounded-md object-cover object-center"
             />
           </CarouselItem>
