@@ -1,5 +1,5 @@
 import { Badge } from './ui/badge'
-import { Card, CardContent, CardDescription, CardTitle } from './ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardTitle } from './ui/card'
 import * as currencyFormatter from '@/lib/currency'
 import { isPopulatedList } from '@/lib/is-populated'
 import { cn } from '@/lib/utils'
@@ -58,27 +58,28 @@ export function VehicleCard({
         sizes={sizes}
         className="bg-secondary aspect-4/3 object-cover object-center"
       />
-      <CardContent className="flex h-full flex-col justify-between gap-2 p-4">
-        <CardTitle className="mb-2 flex items-start justify-between gap-1">
+      <CardContent className="flex h-full flex-col justify-between gap-4 p-4">
+        <CardTitle>
           <Heading>
             <Link
               href={`/vehiculos/${slug}`}
-              className="before:absolute before:inset-0 hover:underline focus:underline"
+              title={`${brand} ${model} ${trim}`}
+              className="block overflow-hidden text-ellipsis whitespace-nowrap before:absolute before:inset-0 hover:underline focus:underline"
             >
               {brand} {model} {trim}
             </Link>
           </Heading>
-          <span>{currencyFormatter[currency].format(price)}</span>
         </CardTitle>
-        <CardDescription>
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">{year}</Badge>
-            <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
-              {kilometers.toLocaleString('es-AR')} km
-            </Badge>
-          </div>
+        <CardDescription className="flex flex-wrap gap-2">
+          <Badge variant="secondary">{year}</Badge>
+          <Badge variant={kilometers === 0 ? 'default' : 'secondary'}>
+            {kilometers.toLocaleString('es-AR')} km
+          </Badge>
         </CardDescription>
       </CardContent>
+      <CardFooter className="bg-secondary text-secondary-foreground block py-2 text-center font-semibold">
+        <p>{currencyFormatter[currency].format(price)}</p>
+      </CardFooter>
     </Card>
   )
 }
