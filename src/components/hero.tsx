@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense } from 'react'
 
 type Props = React.ComponentProps<'section'>
 
@@ -34,9 +33,7 @@ export function Hero({ className, ...props }: Props) {
           </p>
         </div>
 
-        <Suspense>
-          <SearchBar className="mx-auto max-w-md" />
-        </Suspense>
+        <SearchBar className="mx-auto max-w-md" />
 
         <div className="flex justify-center gap-4 max-sm:flex-col">
           <Button size="lg" asChild>

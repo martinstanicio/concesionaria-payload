@@ -1,5 +1,6 @@
 import { Badge } from './ui/badge'
 import { Card, CardContent, CardDescription, CardFooter, CardTitle } from './ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 import * as currencyFormatter from '@/lib/currency'
 import { isPopulatedList } from '@/lib/is-populated'
 import { cn } from '@/lib/utils'
@@ -80,6 +81,34 @@ export function VehicleCard({
       <CardFooter className="bg-secondary text-secondary-foreground block py-2 text-center font-semibold">
         <p>{currencyFormatter[currency].format(price)}</p>
       </CardFooter>
+    </Card>
+  )
+}
+
+type SkeletonProps = React.ComponentProps<typeof Card>
+
+export function VehicleCardSkeleton({ className, ...props }: SkeletonProps) {
+  return (
+    <Card className={cn('relative gap-0 overflow-hidden py-0', className)} {...props}>
+      <Skeleton className="aspect-4/3" />
+      <CardContent className="flex h-full flex-col justify-between gap-4 p-4">
+        <CardTitle>
+          <Skeleton className="text-accent">Marca Modelo Trim</Skeleton>
+        </CardTitle>
+        <CardDescription className="flex flex-wrap gap-2">
+          <Badge variant="secondary" asChild>
+            <Skeleton className="text-accent">9999</Skeleton>
+          </Badge>
+          <Badge variant="secondary" asChild>
+            <Skeleton className="text-accent">{(999999).toLocaleString('es-AR')} km</Skeleton>
+          </Badge>
+        </CardDescription>
+      </CardContent>
+      <Skeleton className="text-accent rounded-none">
+        <CardFooter className="block py-2 text-center font-semibold">
+          <p>Precio</p>
+        </CardFooter>
+      </Skeleton>
     </Card>
   )
 }

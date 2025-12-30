@@ -1,9 +1,12 @@
 import { Button } from './ui/button'
-import { VehicleCard } from './vehicle-card'
+import { VehicleCard, VehicleCardSkeleton } from './vehicle-card'
 import { cn } from '@/lib/utils'
 import config from '@/payload.config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { Suspense } from 'react'
+
+const MAX_FEATURED_VEHICLES = 2
 
 type Props = React.ComponentProps<'section'>
 
@@ -12,7 +15,7 @@ export async function FeaturedVehicles(props: Props) {
   const vehicles = await payload.find({
     collection: 'vehicles',
     depth: 1,
-    limit: 3,
+    limit: MAX_FEATURED_VEHICLES,
   })
 
   if (vehicles.totalDocs < 1) return
@@ -28,15 +31,21 @@ export async function FeaturedVehicles(props: Props) {
         </div>
 
         <div className="flex flex-wrap justify-center gap-8">
-          {vehicles.docs.map((vehicle) => (
-            <VehicleCard
-              key={vehicle.id}
-              vehicle={vehicle}
-              headingLevel="h3"
-              sizes="(min-width: 540px) 447px, calc(96.36vw - 54px)"
-              className="basis-md"
-            />
-          ))}
+          <Suspense
+            fallback={Array.from({ length: MAX_FEATURED_VEHICLES }).map((_, index) => (
+              <VehicleCardSkeleton key={index} className="basis-md" />
+            ))}
+          >
+            {vehicles.docs.map((vehicle) => (
+              <VehicleCard
+                key={vehicle.id}
+                vehicle={vehicle}
+                headingLevel="h3"
+                sizes="(min-width: 540px) 447px, calc(96.36vw - 54px)"
+                className="basis-md"
+              />
+            ))}
+          </Suspense>
         </div>
 
         <div className="flex justify-center">

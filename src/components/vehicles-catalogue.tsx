@@ -1,7 +1,7 @@
 import { PaginationBar } from './pagination-bar'
 import { SearchBar } from './search-bar'
 import { SortingBar } from './sorting-bar'
-import { VehiclesGrid } from './vehicles-grid'
+import { VehiclesGrid, VehiclesGridSkeleton } from './vehicles-grid'
 import { cn } from '@/lib/utils'
 import config from '@/payload.config'
 import { getPayload } from 'payload'
@@ -37,17 +37,15 @@ export async function VehiclesCatalogue({
   return (
     <div className={cn('space-y-6', className)} {...props}>
       <div className="flex flex-col gap-4 md:flex-row">
-        <Suspense>
-          <SearchBar className="flex-1" />
-        </Suspense>
+        <SearchBar className="flex-1" />
         <div className="w-full md:max-w-xs">
-          <Suspense>
-            <SortingBar />
-          </Suspense>
+          <SortingBar />
         </div>
       </div>
 
-      <VehiclesGrid vehicles={vehicles.docs} setFirstImagePriority />
+      <Suspense fallback={<VehiclesGridSkeleton vehicles={limit} />}>
+        <VehiclesGrid vehicles={vehicles.docs} setFirstImagePriority />
+      </Suspense>
 
       <PaginationBar totalPages={vehicles.totalPages} currentPage={vehicles.page || +page} />
     </div>

@@ -1,10 +1,11 @@
 import { Button } from './ui/button'
-import { VehiclesGrid } from './vehicles-grid'
+import { VehiclesGrid, VehiclesGridSkeleton } from './vehicles-grid'
 import { cn } from '@/lib/utils'
 import { Vehicle } from '@/payload-types'
 import config from '@/payload.config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
+import { Suspense } from 'react'
 
 const MAX_SUGGESTED_VEHICLES = 4
 
@@ -74,7 +75,9 @@ export async function SuggestedVehicles({ vehicle, className, ...props }: Props)
     <section className={cn('space-y-6', className)} {...props}>
       <h2 className="text-2xl font-semibold">Vehículos recomendados</h2>
 
-      <VehiclesGrid vehicles={vehicles} />
+      <Suspense fallback={<VehiclesGridSkeleton vehicles={MAX_SUGGESTED_VEHICLES} />}>
+        <VehiclesGrid vehicles={vehicles} />
+      </Suspense>
 
       <div className="flex justify-center">
         <Button size="lg" asChild>

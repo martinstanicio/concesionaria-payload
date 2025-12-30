@@ -1,6 +1,6 @@
 'use client'
 
-import { VehicleCard } from '@/components/vehicle-card'
+import { VehicleCard, VehicleCardSkeleton } from '@/components/vehicle-card'
 import { cn } from '@/lib/utils'
 import { Vehicle } from '@/payload-types'
 
@@ -40,6 +40,26 @@ export function VehiclesGrid({
           priority={setFirstImagePriority && index === 0}
           sizes="(min-width: 1540px) 356px, (min-width: 1280px) 292px, (min-width: 780px) 225px, (min-width: 640px) 291px, calc(100vw - 33px)"
         />
+      ))}
+    </main>
+  )
+}
+
+type SkeletonProps = React.ComponentProps<'main'> & {
+  vehicles: number
+}
+
+export function VehiclesGridSkeleton({ vehicles, className, ...props }: SkeletonProps) {
+  return (
+    <main
+      className={cn(
+        'grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+        className,
+      )}
+      {...props}
+    >
+      {Array.from({ length: vehicles }).map((_, index) => (
+        <VehicleCardSkeleton key={index} />
       ))}
     </main>
   )
