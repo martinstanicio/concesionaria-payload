@@ -12,25 +12,23 @@ type Props = {
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const { search } = await searchParams
+  const { search, page: _page } = await searchParams
+  const page = typeof _page === 'string' && !isNaN(+_page) ? +_page : 1
 
   const _title = search ? `"${search}"` : title
+  const urlWithPageNumber = page > 1 ? `${url}?page=${page}` : url
 
   return {
     ..._metadata,
     title: `${_title} | ${siteName}`,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: urlWithPageNumber },
     openGraph: {
       ..._metadata.openGraph,
       title: `${_title} | ${siteName}`,
       description,
-      url,
+      url: urlWithPageNumber,
     },
-    // pagination: {
-    //   previous: null,
-    //   next: null,
-    // },
   }
 }
 
