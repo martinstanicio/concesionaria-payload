@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import { Suspense } from 'react'
 
-const MAX_FEATURED_VEHICLES = 2
+const MAX_FEATURED_VEHICLES = 3
 
 type Props = React.ComponentProps<'section'>
 
